@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://system:${MONGODB_PASSWORD}@cluster0.wj60g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      database: api-frotas
