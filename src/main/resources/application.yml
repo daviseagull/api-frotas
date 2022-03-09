@@ -3,3 +3,7 @@ spring:
     mongodb:
       uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@cluster0.wj60g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
       database: api-frotas
+  security:
+    user:
+      name: ${BASIC_USER}
+      password: ${BASIC_PASSWORD}
