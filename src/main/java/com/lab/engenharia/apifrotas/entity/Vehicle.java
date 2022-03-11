@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serial;
@@ -19,7 +20,9 @@ public class Vehicle implements Serializable {
 
   @Serial private static final long serialVersionUID = 3030627815715642262L;
 
-  @Id private Long code;
+  @Id
+  @Indexed(unique = true)
+  private Long code;
 
   private TypeEnum type;
 
