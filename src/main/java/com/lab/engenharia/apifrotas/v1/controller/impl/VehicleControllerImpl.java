@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.ResponseEntity.ok;
@@ -34,7 +35,7 @@ public class VehicleControllerImpl implements VehicleController {
 
   @Override
   @PostMapping
-  public ResponseEntity<VehicleDto> createVehicle(VehicleDto vehicleDto) {
+  public ResponseEntity<VehicleDto> createVehicle(@RequestBody @Valid VehicleDto vehicleDto) {
     return ok(vehicleService.createVehicle(vehicleDto));
   }
 }
