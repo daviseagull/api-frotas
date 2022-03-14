@@ -40,7 +40,7 @@ public interface VehicleController {
                     mediaType = "application/json",
                     schema = @Schema(implementation = Object.class)))
       })
-  ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "code") Long code);
+  ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id);
 
   @Operation(
       summary = "Endpoint to get info of all vehicles in DB",

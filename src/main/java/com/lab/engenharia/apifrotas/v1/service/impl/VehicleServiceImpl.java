@@ -7,11 +7,9 @@ import com.lab.engenharia.apifrotas.repository.VehicleRepository;
 import com.lab.engenharia.apifrotas.v1.service.VehicleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 @Slf4j
@@ -20,20 +18,19 @@ public class VehicleServiceImpl implements VehicleService {
 
   private final VehicleRepository repository;
 
-  @Autowired
   private final VehicleMapper vehicleMapper;
 
   @Override
-  public VehicleDto getVehicleInfo(Long code) {
-    log.info("Getting vehicle with code {}", code);
+  public VehicleDto getVehicleInfo(String id) {
+    log.info("Getting vehicle with code {}", id);
 
     var vehicle =
         repository
-            .findByCode(code)
+            .findById(id)
             .orElseThrow(
-                () -> new VehicleNotFoundException("Vehicle with code " + code + "not found."));
+                () -> new VehicleNotFoundException("Vehicle with code " + id + "not found."));
 
-    log.debug("Returning vehicle with code {}: {}", code, vehicle);
+    log.debug("Returning vehicle with code {}: {}", id, vehicle);
     return vehicleMapper.toVehicleDto(vehicle);
   }
 
@@ -44,7 +41,7 @@ public class VehicleServiceImpl implements VehicleService {
     var vehicle = vehicleMapper.toVehicle(vehicleDto);
     repository.save(vehicle);
 
-    return vehicleDto;
+    return vehicleMapper.toVehicleDto(vehicle);
   }
 
   @Override
