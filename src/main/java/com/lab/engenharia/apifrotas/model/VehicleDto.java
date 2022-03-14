@@ -3,10 +3,7 @@ package com.lab.engenharia.apifrotas.model;
 import com.lab.engenharia.apifrotas.model.enums.StatusEnum;
 import com.lab.engenharia.apifrotas.model.enums.TypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,9 +18,8 @@ public class VehicleDto implements Serializable {
 
   @Serial private static final long serialVersionUID = 3227682698395451989L;
 
-  @Schema(name = "code", description = "Vehicle's code", example = "15431234", required = true)
-  @NotNull
-  private Long code;
+  @Schema(name = "id", description = "Vehicle's id", required = true)
+  private String id;
 
   @Schema(name = "type", description = "Vehicle's type", example = "Carro", required = true)
   @NotNull
@@ -60,4 +56,24 @@ public class VehicleDto implements Serializable {
       required = true)
   @NotNull
   private StatusEnum status;
+
+  @Builder
+  public VehicleDto(
+      String id,
+      TypeEnum type,
+      Integer year,
+      String color,
+      Integer seatQuantity,
+      String model,
+      String brand,
+      StatusEnum status) {
+    this.id = id;
+    this.type = type;
+    this.year = year;
+    this.color = color;
+    this.seatQuantity = seatQuantity;
+    this.model = model;
+    this.brand = brand;
+    this.status = status;
+  }
 }

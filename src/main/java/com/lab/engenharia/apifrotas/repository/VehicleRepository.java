@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface VehicleRepository extends MongoRepository<Vehicle, String> {
 
-    Optional<Vehicle> findByCode (Long code);
+  Optional<Vehicle> findById(String code);
 }

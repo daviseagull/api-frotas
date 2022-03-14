@@ -22,9 +22,9 @@ public class VehicleControllerImpl implements VehicleController {
   private final VehicleService vehicleService;
 
   @Override
-  @GetMapping("/{code}")
-  public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "code") Long code) {
-    return ok(vehicleService.getVehicleInfo(code));
+  @GetMapping("/{id}")
+  public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id) {
+    return ok(vehicleService.getVehicleInfo(id));
   }
 
   @Override

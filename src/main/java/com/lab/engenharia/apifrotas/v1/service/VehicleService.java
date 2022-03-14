@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface VehicleService {
 
-  VehicleDto getVehicleInfo(Long code);
+  VehicleDto getVehicleInfo(String id);
 
   List<VehicleDto> getAllVehicles();
 
