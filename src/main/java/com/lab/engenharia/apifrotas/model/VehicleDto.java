@@ -76,4 +76,6 @@ public class VehicleDto implements Serializable {
     this.brand = brand;
     this.status = status;
   }
+
+  public VehicleDto() {}
 }
