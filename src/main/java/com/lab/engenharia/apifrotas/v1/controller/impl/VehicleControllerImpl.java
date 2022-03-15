@@ -1,6 +1,7 @@
 package com.lab.engenharia.apifrotas.v1.controller.impl;
 
 import com.lab.engenharia.apifrotas.model.VehicleDto;
+import com.lab.engenharia.apifrotas.model.VehicleSummaryDto;
 import com.lab.engenharia.apifrotas.v1.controller.VehicleController;
 import com.lab.engenharia.apifrotas.v1.service.VehicleService;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +23,22 @@ public class VehicleControllerImpl implements VehicleController {
   private final VehicleService vehicleService;
 
   @Override
-  @GetMapping("/{code}")
-  public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "code") Long code) {
-    return ok(vehicleService.getVehicleInfo(code));
+  @GetMapping("/{id}")
+  public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id) {
+    return ok(vehicleService.getVehicleInfo(id));
   }
 
   @Override
   @GetMapping("/vehicles")
   public ResponseEntity<List<VehicleDto>> getAllVehicles() {
     return ok(vehicleService.getAllVehicles());
+  }
+
+  @Override
+  @GetMapping("/vehicles/status/{status}")
+  public ResponseEntity<List<VehicleSummaryDto>> getAllVehiclesByStatus(
+      @PathVariable(value = "status") String status) {
+    return ok(vehicleService.getVehiclesByStatus(status));
   }
 
   @Override

@@ -18,9 +18,15 @@ public enum StatusEnum {
     this.statusName = statusName;
   }
 
-  public static Optional<StatusEnum> getInstance(String statusName) {
+  public static Optional<StatusEnum> getInstanceByName(String statusName) {
     return Arrays.stream(values())
         .filter(v -> v.getStatusName().equalsIgnoreCase(statusName))
+        .findFirst();
+  }
+
+  public static Optional<StatusEnum> getInstanceByValue(String statusValue) {
+    return Arrays.stream(values())
+        .filter(v -> v.getStatusValue().equalsIgnoreCase(statusValue))
         .findFirst();
   }
 

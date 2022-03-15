@@ -3,7 +3,10 @@ package com.lab.engenharia.apifrotas.model;
 import com.lab.engenharia.apifrotas.model.enums.StatusEnum;
 import com.lab.engenharia.apifrotas.model.enums.TypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,9 +17,9 @@ import java.io.Serializable;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class VehicleDto implements Serializable {
+public class VehicleSummaryDto implements Serializable {
 
-  @Serial private static final long serialVersionUID = 3227682698395451989L;
+  @Serial private static final long serialVersionUID = 2231709541896838273L;
 
   @Schema(name = "id", description = "Vehicle's id", required = true)
   private String id;
@@ -24,14 +27,6 @@ public class VehicleDto implements Serializable {
   @Schema(name = "type", description = "Vehicle's type", example = "Carro", required = true)
   @NotNull
   private TypeEnum type;
-
-  @Schema(name = "year", description = "Vehicle's year", example = "2015", required = true)
-  @NotNull
-  private Integer year;
-
-  @Schema(name = "color", description = "Vehicle's color", example = "Preto", required = true)
-  @NotBlank
-  private String color;
 
   @Schema(
       name = "seatQuantity",
@@ -45,10 +40,6 @@ public class VehicleDto implements Serializable {
   @NotBlank
   private String model;
 
-  @Schema(name = "brand", description = "Vehicle's brand", example = "Chevrolet", required = true)
-  @NotBlank
-  private String brand;
-
   @Schema(
       name = "status",
       description = "Vehicle's status",
@@ -56,24 +47,4 @@ public class VehicleDto implements Serializable {
       required = true)
   @NotNull
   private StatusEnum status;
-
-  @Builder
-  public VehicleDto(
-      String id,
-      TypeEnum type,
-      Integer year,
-      String color,
-      Integer seatQuantity,
-      String model,
-      String brand,
-      StatusEnum status) {
-    this.id = id;
-    this.type = type;
-    this.year = year;
-    this.color = color;
-    this.seatQuantity = seatQuantity;
-    this.model = model;
-    this.brand = brand;
-    this.status = status;
-  }
 }
