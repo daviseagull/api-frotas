@@ -1,6 +1,7 @@
 package com.lab.engenharia.apifrotas.v1.controller;
 
 import com.lab.engenharia.apifrotas.model.VehicleDto;
+import com.lab.engenharia.apifrotas.model.VehicleSummaryDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -69,6 +70,35 @@ public interface VehicleController {
                     schema = @Schema(implementation = Object.class)))
       })
   ResponseEntity<List<VehicleDto>> getAllVehicles();
+
+  @Operation(
+      summary = "Endpoint to get info of all vehicles by status in DB",
+      responses = {
+        @ApiResponse(
+            description = "Data obtained with success.",
+            responseCode = "200",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    array = @ArraySchema(schema = @Schema(implementation = VehicleDto.class)))),
+        @ApiResponse(
+            description =
+                "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
+            responseCode = "400",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = String.class))),
+        @ApiResponse(
+            description = "Unmapped Error.",
+            responseCode = "500",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = Object.class)))
+      })
+  ResponseEntity<List<VehicleSummaryDto>> getAllVehiclesByStatus(
+      @PathVariable(value = "status") String status);
 
   @Operation(
       summary = "Endpoint to get info of one vehicle",
