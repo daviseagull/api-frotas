@@ -10,121 +10,124 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface VehicleController {
 
-  @Operation(
-      summary = "Endpoint to get info of one vehicle",
-      responses = {
-        @ApiResponse(
-            description = "Data obtained with success.",
-            responseCode = "200",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = VehicleDto.class))),
-        @ApiResponse(
-            description =
-                "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
-            responseCode = "400",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = String.class))),
-        @ApiResponse(
-            description = "Unmapped Error.",
-            responseCode = "500",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = Object.class)))
-      })
-  ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id);
+    @Operation(
+            summary = "Endpoint to get info of one vehicle",
+            responses = {
+                    @ApiResponse(
+                            description = "Data obtained with success.",
+                            responseCode = "200",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = VehicleDto.class))),
+                    @ApiResponse(
+                            description =
+                                    "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
+                            responseCode = "400",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = String.class))),
+                    @ApiResponse(
+                            description = "Unmapped Error.",
+                            responseCode = "500",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = Object.class)))
+            })
+    ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id);
 
-  @Operation(
-      summary = "Endpoint to get info of all vehicles in DB",
-      responses = {
-        @ApiResponse(
-            description = "Data obtained with success.",
-            responseCode = "200",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = VehicleDto.class)))),
-        @ApiResponse(
-            description =
-                "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
-            responseCode = "400",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = String.class))),
-        @ApiResponse(
-            description = "Unmapped Error.",
-            responseCode = "500",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = Object.class)))
-      })
-  ResponseEntity<List<VehicleDto>> getAllVehicles();
+    @Operation(
+            summary = "Endpoint to get info of all vehicles in DB",
+            responses = {
+                    @ApiResponse(
+                            description = "Data obtained with success.",
+                            responseCode = "200",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = VehicleDto.class)))),
+                    @ApiResponse(
+                            description =
+                                    "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
+                            responseCode = "400",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = String.class))),
+                    @ApiResponse(
+                            description = "Unmapped Error.",
+                            responseCode = "500",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = Object.class)))
+            })
+    ResponseEntity<List<VehicleDto>> getVehicles(@RequestParam(value = "status") Optional<String> status,
+                                                 @RequestParam(value = "type") Optional<String> type);
 
-  @Operation(
-      summary = "Endpoint to get info of all vehicles by status in DB",
-      responses = {
-        @ApiResponse(
-            description = "Data obtained with success.",
-            responseCode = "200",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    array = @ArraySchema(schema = @Schema(implementation = VehicleDto.class)))),
-        @ApiResponse(
-            description =
-                "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
-            responseCode = "400",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = String.class))),
-        @ApiResponse(
-            description = "Unmapped Error.",
-            responseCode = "500",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = Object.class)))
-      })
-  ResponseEntity<List<VehicleSummaryDto>> getAllVehiclesByStatus(
-      @PathVariable(value = "status") String status);
+    @Operation(
+            summary = "Endpoint to get info of all vehicles by status in DB",
+            responses = {
+                    @ApiResponse(
+                            description = "Data obtained with success.",
+                            responseCode = "200",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = VehicleDto.class)))),
+                    @ApiResponse(
+                            description =
+                                    "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
+                            responseCode = "400",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = String.class))),
+                    @ApiResponse(
+                            description = "Unmapped Error.",
+                            responseCode = "500",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = Object.class)))
+            })
+    ResponseEntity<List<VehicleSummaryDto>> getAllVehiclesByStatus(
+            @PathVariable(value = "status") String status);
 
-  @Operation(
-      summary = "Endpoint to get info of one vehicle",
-      responses = {
-        @ApiResponse(
-            description = "Data obtained with success.",
-            responseCode = "200",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = VehicleDto.class))),
-        @ApiResponse(
-            description =
-                "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
-            responseCode = "400",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = String.class))),
-        @ApiResponse(
-            description = "Unmapped Error.",
-            responseCode = "500",
-            content =
-                @Content(
-                    mediaType = "application/json",
-                    schema = @Schema(implementation = Object.class)))
-      })
-  ResponseEntity<VehicleDto> createVehicle(@RequestBody VehicleDto vehicleDto);
+    @Operation(
+            summary = "Endpoint to get info of one vehicle",
+            responses = {
+                    @ApiResponse(
+                            description = "Data obtained with success.",
+                            responseCode = "200",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = VehicleDto.class))),
+                    @ApiResponse(
+                            description =
+                                    "The Request was malformed, omitting mandatory attributes, either in the payload or through attributes in the url.",
+                            responseCode = "400",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = String.class))),
+                    @ApiResponse(
+                            description = "Unmapped Error.",
+                            responseCode = "500",
+                            content =
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = Object.class)))
+            })
+    ResponseEntity<VehicleDto> createVehicle(@RequestBody VehicleDto vehicleDto);
 }
