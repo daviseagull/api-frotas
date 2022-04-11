@@ -34,6 +34,8 @@ public class Vehicle implements Serializable {
 
   private StatusEnum status;
 
+  private Boolean isActive;
+
   @Builder
   public Vehicle(
       String id,
@@ -43,7 +45,8 @@ public class Vehicle implements Serializable {
       Integer seatQuantity,
       String model,
       String brand,
-      StatusEnum status) {
+      StatusEnum status,
+      Boolean isActive) {
     this.id = id;
     this.type = type;
     this.year = year;
@@ -52,5 +55,6 @@ public class Vehicle implements Serializable {
     this.model = model;
     this.brand = brand;
     this.status = status;
+    this.isActive = isActive;
   }
 }

@@ -20,30 +20,30 @@ import static org.springframework.http.ResponseEntity.ok;
 @Slf4j
 public class VehicleControllerImpl implements VehicleController {
 
-  private final VehicleService vehicleService;
+    private final VehicleService vehicleService;
 
-  @Override
-  @GetMapping("/{id}")
-  public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id) {
-    return ok(vehicleService.getVehicleInfo(id));
-  }
+    @Override
+    @GetMapping("/{id}")
+    public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id) {
+        return ok(vehicleService.getVehicleInfo(id));
+    }
 
-  @Override
-  @GetMapping("/vehicles")
-  public ResponseEntity<List<VehicleDto>> getAllVehicles() {
-    return ok(vehicleService.getAllVehicles());
-  }
+    @Override
+    @GetMapping("/vehicles")
+    public ResponseEntity<List<VehicleDto>> getVehicles() {
+        return ok(vehicleService.getAllVehicles());
+    }
 
-  @Override
-  @GetMapping("/vehicles/status/{status}")
-  public ResponseEntity<List<VehicleSummaryDto>> getAllVehiclesByStatus(
-      @PathVariable(value = "status") String status) {
-    return ok(vehicleService.getVehiclesByStatus(status));
-  }
+    @Override
+    @GetMapping("/vehicles/status/{status}")
+    public ResponseEntity<List<VehicleSummaryDto>> getAllVehiclesByStatus(
+            @PathVariable(value = "status") String status) {
+        return ok(vehicleService.getVehiclesByStatus(status));
+    }
 
-  @Override
-  @PostMapping
-  public ResponseEntity<VehicleDto> createVehicle(@RequestBody @Valid VehicleDto vehicleDto) {
-    return ok(vehicleService.createVehicle(vehicleDto));
-  }
+    @Override
+    @PostMapping
+    public ResponseEntity<VehicleDto> createVehicle(@RequestBody @Valid VehicleDto vehicleDto) {
+        return ok(vehicleService.createVehicle(vehicleDto));
+    }
 }

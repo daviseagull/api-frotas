@@ -18,58 +18,58 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VehicleServiceImpl implements VehicleService {
 
-  private final VehicleRepository repository;
+    private final VehicleRepository repository;
 
-  private final VehicleMapper vehicleMapper;
+    private final VehicleMapper vehicleMapper;
 
-  @Override
-  public VehicleDto getVehicleInfo(String id) {
-    log.info("Getting vehicle with code {}", id);
+    @Override
+    public VehicleDto getVehicleInfo(String id) {
+        log.info("Getting vehicle with code {}", id);
 
-    var vehicle =
-        repository
-            .findById(id)
-            .orElseThrow(
-                () -> new VehicleNotFoundException("Vehicle with code " + id + "not found."));
+        var vehicle =
+                repository
+                        .findById(id)
+                        .orElseThrow(
+                                () -> new VehicleNotFoundException("Vehicle with code " + id + " not found."));
 
-    log.debug("Returning vehicle with code {}: {}", id, vehicle);
-    return vehicleMapper.toVehicleDto(vehicle);
-  }
+        log.debug("Returning vehicle with code {}: {}", id, vehicle);
+        return vehicleMapper.toVehicleDto(vehicle);
+    }
 
-  @Override
-  public VehicleDto createVehicle(VehicleDto vehicleDto) {
-    log.info("Salving vehicle: {}", vehicleDto);
+    @Override
+    public VehicleDto createVehicle(VehicleDto vehicleDto) {
+        log.info("Salving vehicle: {}", vehicleDto);
 
-    var vehicle = vehicleMapper.toVehicle(vehicleDto);
-    repository.save(vehicle);
+        var vehicle = vehicleMapper.toVehicle(vehicleDto);
+        var savedVehicle = repository.save(vehicle);
 
-    return vehicleMapper.toVehicleDto(vehicle);
-  }
+        return vehicleMapper.toVehicleDto(savedVehicle);
+    }
 
-  @Override
-  public List<VehicleDto> getAllVehicles() {
-    log.info("Getting all vehicles");
+    @Override
+    public List<VehicleDto> getAllVehicles() {
 
-    var vehicles = repository.findAll();
+        log.info("Getting all vehicles.");
+        var vehicles = repository.findAll();
 
-    var vehiclesDto = vehicles.stream().map(vehicleMapper::toVehicleDto).toList();
+        var vehiclesDto = vehicles.stream().map(vehicleMapper::toVehicleDto).toList();
 
-    log.debug("Returning vehicles {}", vehiclesDto);
-    return vehiclesDto;
-  }
+        log.debug("Returning vehicles {}", vehiclesDto);
+        return vehiclesDto;
+    }
 
-  @Override
-  public List<VehicleSummaryDto> getVehiclesByStatus(String status) {
-    log.info("Getting all vehicles by status: {}", status);
+    @Override
+    public List<VehicleSummaryDto> getVehiclesByStatus(String status) {
+        log.info("Getting all vehicles by status: {}", status);
 
-    var statusEnum = StatusEnum.getInstanceByValue(status).orElseThrow();
+        var statusEnum = StatusEnum.getInstanceByValue(status).orElseThrow();
 
-    var vehicles = repository.findAllByStatus(statusEnum);
+        var vehicles = repository.findAllByStatus(statusEnum);
 
-    var vehiclesSummaryDto = vehicles.stream().map(vehicleMapper::toVehicleSummaryDto).toList();
+        var vehiclesSummaryDto = vehicles.stream().map(vehicleMapper::toVehicleSummaryDto).toList();
 
-    log.debug("Returning vehicleSummary {}", vehiclesSummaryDto);
+        log.debug("Returning vehicleSummary {}", vehiclesSummaryDto);
 
-    return vehiclesSummaryDto;
-  }
+        return vehiclesSummaryDto;
+    }
 }

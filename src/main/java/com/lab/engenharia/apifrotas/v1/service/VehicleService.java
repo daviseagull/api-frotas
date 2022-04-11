@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface VehicleService {
 
-  VehicleDto getVehicleInfo(String id);
+    VehicleDto getVehicleInfo(String id);
 
-  List<VehicleDto> getAllVehicles();
+    List<VehicleDto> getAllVehicles();
 
-  List<VehicleSummaryDto> getVehiclesByStatus(String status);
+    List<VehicleSummaryDto> getVehiclesByStatus(String status);
 
-  VehicleDto createVehicle(VehicleDto vehicleDto);
+    VehicleDto createVehicle(VehicleDto vehicleDto);
 }

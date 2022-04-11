@@ -6,31 +6,37 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum TypeEnum {
-  CAR("car", "Carro"),
-  VAN("van", "Van"),
-  BUS("bus", "Ônibus");
+    CAR("car", "Carro"),
+    VAN("van", "Van"),
+    BUS("bus", "Ônibus");
 
-  private final String typeValue;
+    private final String typeValue;
 
-  private final String typeName;
+    private final String typeName;
 
-  TypeEnum(String typeValue, String typeName) {
-    this.typeValue = typeValue;
-    this.typeName = typeName;
-  }
+    TypeEnum(String typeValue, String typeName) {
+        this.typeValue = typeValue;
+        this.typeName = typeName;
+    }
 
-  @JsonValue
-  public String getTypeName() {
-    return typeName;
-  }
+    public static Optional<TypeEnum> getInstanceByValue(String typeValue) {
+        return Arrays.stream(values())
+                .filter(v -> v.getTypeValue().equalsIgnoreCase(typeValue))
+                .findFirst();
+    }
 
-  public String getTypeValue() {
-    return typeValue;
-  }
+    public static Optional<TypeEnum> getInstanceByName(String typeName) {
+        return Arrays.stream(values())
+                .filter(v -> v.getTypeName().equalsIgnoreCase(typeName))
+                .findFirst();
+    }
 
-  public static Optional<TypeEnum> getInstance(String typeName) {
-    return Arrays.stream(values())
-        .filter(v -> v.getTypeName().equalsIgnoreCase(typeName))
-        .findFirst();
-  }
+    @JsonValue
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public String getTypeValue() {
+        return typeValue;
+    }
 }
