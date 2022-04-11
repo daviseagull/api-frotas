@@ -2,6 +2,8 @@ package com.lab.engenharia.apifrotas.mock;
 
 import com.lab.engenharia.apifrotas.model.VehicleSummaryDto;
 
+import java.util.List;
+
 import static com.lab.engenharia.apifrotas.mock.VehicleMock.*;
 import static com.lab.engenharia.apifrotas.model.enums.StatusEnum.AVAILABLE;
 import static com.lab.engenharia.apifrotas.model.enums.TypeEnum.BUS;
@@ -27,5 +29,9 @@ public class VehicleSummaryDtoMock {
                 .status(AVAILABLE)
                 .type(CAR)
                 .build();
+    }
+
+    public static List<VehicleSummaryDto> buildAvailableVehicles() {
+        return List.of(buildAvailableCar(), buildAvailableBus());
     }
 }
