@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -31,9 +30,8 @@ public class VehicleControllerImpl implements VehicleController {
 
     @Override
     @GetMapping("/vehicles")
-    public ResponseEntity<List<VehicleDto>> getVehicles(@RequestParam(value = "status") Optional<String> status,
-                                                        @RequestParam(value = "type") Optional<String> type) {
-        return ok(vehicleService.getAllVehicles(status, type));
+    public ResponseEntity<List<VehicleDto>> getVehicles() {
+        return ok(vehicleService.getAllVehicles());
     }
 
     @Override

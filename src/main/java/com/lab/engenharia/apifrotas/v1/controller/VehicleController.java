@@ -10,10 +10,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface VehicleController {
 
@@ -71,8 +69,7 @@ public interface VehicleController {
                                     mediaType = "application/json",
                                     schema = @Schema(implementation = Object.class)))
             })
-    ResponseEntity<List<VehicleDto>> getVehicles(@RequestParam(value = "status") Optional<String> status,
-                                                 @RequestParam(value = "type") Optional<String> type);
+    ResponseEntity<List<VehicleDto>> getVehicles();
 
     @Operation(
             summary = "Endpoint to get info of all vehicles by status in DB",
