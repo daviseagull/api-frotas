@@ -24,15 +24,15 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public VehicleDto getVehicleInfo(String id) {
-        log.info("Getting vehicle with code {}", id);
+        log.info("Getting vehicle with id {}", id);
 
         var vehicle =
                 repository
                         .findById(id)
                         .orElseThrow(
-                                () -> new VehicleNotFoundException("Vehicle with code " + id + " not found."));
+                                () -> new VehicleNotFoundException("Vehicle with id " + id + " not found."));
 
-        log.debug("Returning vehicle with code {}: {}", id, vehicle);
+        log.debug("Returning vehicle with id {}: {}", id, vehicle);
         return vehicleMapper.toVehicleDto(vehicle);
     }
 
