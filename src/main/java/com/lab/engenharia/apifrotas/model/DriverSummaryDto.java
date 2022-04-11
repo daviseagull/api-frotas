@@ -1,10 +1,7 @@
 package com.lab.engenharia.apifrotas.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
@@ -13,6 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@Builder
 @EqualsAndHashCode
 public class DriverSummaryDto implements Serializable {
 

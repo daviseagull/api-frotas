@@ -2,10 +2,7 @@ package com.lab.engenharia.apifrotas.model;
 
 import com.lab.engenharia.apifrotas.model.enums.StatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -43,4 +40,16 @@ public class DriverDto implements Serializable {
     @Schema(name = "age", description = "Driver's age", example = "33", required = true)
     @NotBlank
     private Integer age;
+
+    @Builder
+    public DriverDto(String id, String name, StatusEnum status, Long cnh, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.cnh = cnh;
+        this.age = age;
+    }
+
+    public DriverDto() {
+    }
 }
