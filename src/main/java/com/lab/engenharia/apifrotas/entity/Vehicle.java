@@ -6,55 +6,51 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @ToString
 @Getter
 @Setter
 @EqualsAndHashCode
 @Document
-public class Vehicle implements Serializable {
+public class Vehicle {
 
-  @Serial private static final long serialVersionUID = 3030627815715642262L;
+    @Id
+    private String id;
 
-  @Id private String id;
+    private TypeEnum type;
 
-  private TypeEnum type;
+    private Integer year;
 
-  private Integer year;
+    private String color;
 
-  private String color;
+    private Integer seatQuantity;
 
-  private Integer seatQuantity;
+    private String model;
 
-  private String model;
+    private String brand;
 
-  private String brand;
+    private StatusEnum status;
 
-  private StatusEnum status;
+    private Boolean isActive;
 
-  private Boolean isActive;
-
-  @Builder
-  public Vehicle(
-      String id,
-      TypeEnum type,
-      Integer year,
-      String color,
-      Integer seatQuantity,
-      String model,
-      String brand,
-      StatusEnum status,
-      Boolean isActive) {
-    this.id = id;
-    this.type = type;
-    this.year = year;
-    this.color = color;
-    this.seatQuantity = seatQuantity;
-    this.model = model;
-    this.brand = brand;
-    this.status = status;
-    this.isActive = isActive;
-  }
+    @Builder
+    public Vehicle(
+            String id,
+            TypeEnum type,
+            Integer year,
+            String color,
+            Integer seatQuantity,
+            String model,
+            String brand,
+            StatusEnum status,
+            Boolean isActive) {
+        this.id = id;
+        this.type = type;
+        this.year = year;
+        this.color = color;
+        this.seatQuantity = seatQuantity;
+        this.model = model;
+        this.brand = brand;
+        this.status = status;
+        this.isActive = isActive;
+    }
 }
