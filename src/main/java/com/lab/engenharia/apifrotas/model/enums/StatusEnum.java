@@ -7,7 +7,8 @@ import java.util.Optional;
 
 public enum StatusEnum {
     UNAVAILABLE("unavailable", "Indisponível"),
-    AVAILABLE("available", "Disponível");
+    AVAILABLE("available", "Disponível"),
+    IN_USE("inUse", "Em uso");
 
     private final String statusName;
     private final String statusValue;
