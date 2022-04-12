@@ -23,13 +23,13 @@ public class DriverControllerImpl implements DriverController {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<DriverDto> getDriverInfo(String id) {
+    public ResponseEntity<DriverDto> getDriverInfo(@PathVariable String id) {
         return ok(driverService.getDriverInfo(id));
     }
 
     @Override
     @GetMapping("/drivers/status/{status}")
-    public ResponseEntity<List<DriverSummaryDto>> getAllDriverByStatus(@PathVariable(value = "status") String status) {
+    public ResponseEntity<List<DriverSummaryDto>> getAllDriverByStatus(@PathVariable String status) {
         return ok(driverService.getDriverByStatus(status));
     }
 
