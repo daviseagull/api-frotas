@@ -24,7 +24,7 @@ public class VehicleControllerImpl implements VehicleController {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable(value = "id") String id) {
+    public ResponseEntity<VehicleDto> getVehicleInfo(@PathVariable String id) {
         return ok(vehicleService.getVehicleInfo(id));
     }
 
@@ -37,7 +37,7 @@ public class VehicleControllerImpl implements VehicleController {
     @Override
     @GetMapping("/vehicles/status/{status}")
     public ResponseEntity<List<VehicleSummaryDto>> getAllVehiclesByStatus(
-            @PathVariable(value = "status") String status) {
+            @PathVariable String status) {
         return ok(vehicleService.getVehiclesByStatus(status));
     }
 
